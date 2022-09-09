@@ -41,7 +41,7 @@ function renderListProduct(data) {
                 <p id="phoneDesc" class="card-text">Mô tả: ${product.desc}</p>
               </div>
               <div class="card-footer text-center style="background-color:white"">
-                <button class="btn btn-dark" data-id=${product.id}>Add to cart</button>
+                <button class="btn btn-dark" style="width:100%" data-id=${product.id}><i class="fa fa-cart-plus"></i></button>
               </div>
             </div>
       `;
@@ -61,9 +61,9 @@ function renderCart() {
           </div>
           <div style="width:40%; margin-bottom:10px">${product.name}</div>
           <div style="width:15%; margin-bottom:10px">
-            <button id="addQ" style="border:none; background-color:white"  data-id=${product.id}><i class="fas fa-chevron-left"></i></button>
+            <button id="addQ" style="border:none; background-color:white"  data-id=${product.id}><i class="fa fa-caret-left"></i></button>
             ${product.quantity}
-            <button id="minusQ" style="border:none; background-color:white" data-id=${product.id}><i class="fas fa-chevron-right"></i></button>
+            <button id="minusQ" style="border:none; background-color:white" data-id=${product.id}><i class="fa fa-caret-right"></i></button>
           </div>
           <div style="width:15%; margin-bottom:10px">${product.price}</div>
           <div style="width:15%"><button style="border:none; background-color:white"><i class="fa fa-trash"></i></button></div>

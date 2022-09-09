@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Jekyll v4.1.1" />
+    <title>Dashboard Food</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.5/examples/dashboard/"
+    />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.css"> -->
+    <!-- Bootstrap core CSS -->
+    <link
+      href="../../assets/lib/css/bootstrap/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/foodList.css" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../../assets/css/dashboard.css" rel="stylesheet" />
+    <!-- <link href="../../assets/css/foodForm.css" rel="stylesheet"> -->
+  </head>
+
+  <body>
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-md-4">
+          <h2>Danh Sách Sản Phẩm</h2>
+
+          <!-- Button trigger modal -->
+          <div class="row">
+            <div class="col-8">
+              <button
+                id="btnThem"
+                type="button"
+                class="btn btn-warning mb-3 text-white"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Thêm Sản Phẩm
+              </button>
+            </div>
+            <div class="col-4">
+              <div class="form-group row">
+                <label for="selLoai" class="col-sm-2 col-form-label"
+                  >Show</label
+                >
+                <div class="col-sm-10">
+                  <select class="custom-select" id="selLoai">
+                    <option value="all">All</option>
+                    <option value="apple">Apple</option>
+                    <option value="samsung">Samsung</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive productTable">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr class="bg-warning text-white">
+                  <th>ID</th>
+                  <th>Tên</th>
+                  <th>Giá</th>
+                  <th>Màn hình</th>
+                  <th>Camera sau</th>
+                  <th>Camera trước</th>
+                  <th>Hình ảnh</th>
+                  <th>Mô tả</th>
+                  <th>Hãng</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tbodyProduct"></tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- <footer class="my-5 pt-5 text-muted text-center text-small fixed-bottom">
+    <p class="mb-1">&copy; 2017-2020 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer> -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm Sản Phẩm</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form class="needs-validation" id="productForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="productID">Mã Sản Phẩm</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="productID"
+                    placeholder="Nhập ID"
+                    value=""
+                    required
+                  />
+                  <div id="invalidID" class="invalid-feedback"></div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="tenSP">Tên Sản Phẩm</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="tenSP"
+                    placeholder="Nhập tên sản phẩm"
+                    required
+                  />
+                  <div id="invalidTen" class="invalid-form"></div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="loai">Giá</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="giaSP"
+                    placeholder="Nhập giá sản phẩm"
+                    required
+                  />
+                  <div id="invalidGia" class="invalid-feedback"></div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="manHinh">Màn hình</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="manHinh"
+                    placeholder="Nhập cấu hình màn hình"
+                    value=""
+                    required
+                  />
+                  <div id="invalidManHinh" class="invalid-feedback"></div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="cameraSau">Camera sau</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cameraSau"
+                    placeholder="Nhập cấu hình camera sau"
+                    required
+                  />
+                  <div id="invalidCameraSau" class="invalid-feedback"></div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="cameraTruoc">Camera trước</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cameraTruoc"
+                    placeholder="Nhập cấu hình camera trước"
+                    required
+                  />
+                  <div id="invalidCameraTruoc" class="invalid-feedback"></div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label for="hinhSP">Hình sản phẩm</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="hinhSP"
+                    placeholder="Nhập hình sản phẩm"
+                    required
+                  />
+                  <div id="invalidHinhSP" class="invalid-feedback"></div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <div class="form-group">
+                    <label for="moTa">Mô Tả</label>
+                    <textarea
+                      class="form-control"
+                      id="moTa"
+                      rows="3"
+                    ></textarea>
+                    <div id="invalidMoTa" class="invalid-form"></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <div class="form-group">
+                    <label for="loaiSP">Loại sản phẩm</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="loaiSP"
+                      placeholder="Nhập loại sản phẩm"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-warning" id="btnCapNhat">
+              Cập Nhật
+            </button>
+            <button type="button" class="btn btn-warning" id="btnThemMon">
+              Thêm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/lib/js/Jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../assets/lib/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script type="module" src="../controllers/v2/main-v2.js"></script>
+
+    <script src="../controllers/food.js"></script>
+  </body>
+</html>

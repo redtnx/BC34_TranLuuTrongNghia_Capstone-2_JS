@@ -48,7 +48,7 @@
           data-toggle="modal"
           data-target="#exampleModal"
         >
-          <i class="fa fa-cart-plus"></i>
+          <i class="fa fa-shopping-cart"></i>
         </button>
         <p class="quantity-of-cart-list"></p>
       </div>
@@ -63,7 +63,9 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+              <h5 class="modal-title" id="exampleModalLabel">
+                <i class="fa fa-shopping-cart"></i>
+              </h5>
               <button
                 type="button"
                 class="close"
@@ -81,8 +83,12 @@
 
             <div class="modal-footer">
               <div>
-                <button class="btn btn-info">Pay</button>
-                <button class="btn btn-danger">Clear cart</button>
+                <button class="btn btn-info" style="width: 100px">
+                  <i class="fa fa-dollar-sign"></i>
+                </button>
+                <button class="btn btn-danger">
+                  <i class="fa fa-trash-alt"></i>
+                </button>
               </div>
             </div>
           </div>
