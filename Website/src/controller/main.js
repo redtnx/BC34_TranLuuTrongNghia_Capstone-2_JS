@@ -1,4 +1,4 @@
-var service = new Service();
+let service = new Service();
 
 function getEle(id) {
   return document.getElementById(id);
@@ -7,15 +7,11 @@ function getEle(id) {
 function fetchData() {
   // Pending
   // Show loader
-  getEle("loading").style.display = "block";
   service
     .getListProduct()
     .then(function (result) {
       // Response
-      renderHTML(result.data);
-
-      // Hide loader
-      getEle("loading").style.display = "none";
+      renderHTMLContainer(result.data);
     })
     .catch(function (error) {
       console.log(error);
@@ -24,12 +20,34 @@ function fetchData() {
 
 fetchData();
 
+function renderHTMLContainer(data) {
+  let listProduct = [];
+
+  let phoneType = (getEle("search").onchange =
+    ("change",
+    function (event) {
+      return event.target.value;
+    }));
+  console.log(phoneType);
+
+  data.forEach(function (product) {
+    if (product.type === phoneType) {
+      listProduct.push(product);
+    }
+    console.log(listProduct);
+  });
+
+  //   console.log(phoneType);
+
+  renderHTML(listProduct);
+}
+
 function renderHTML(data) {
   var content = "";
   data.forEach(function (product) {
     content += `
       <div class="card">
-              <div id="phoneImg" class="card-header text-center"><img class="img-fluid width-auto" src="${product.img}"></div>
+              <div id="phoneImg" class="card-header text-center"><img class="img-fluid" src="${product.img}"></div>
               <div class="card-body text-center">
                 <h5 id="phoneName" class="card-title">${product.name}</h5>
                 <p id="phonePrice" class="card-text">Giá: ${product.price}</p>
@@ -39,11 +57,14 @@ function renderHTML(data) {
                 <p id="phoneDesc" class="card-text">Mô tả: ${product.desc}</p>
                 <p id="phoneType" class="card-text">Hãng: ${product.type}</p>
               </div>
-              <div class="card-footer">
-                <button id="addToCart">Add to cart</button>
+              <div class="card-footer text-center">
+                <button class="btn btn-dark" id="addToCart" onclick=addToCart(${product.id})>Add to cart</button>
               </div>
             </div>
       `;
   });
   getEle("products__content").innerHTML = content;
 }
+
+// Add to cart
+function addToCart(id) {}

@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#products__content{
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+    align-self: center;
+    align-items: center;
+}
+
+.products{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to left, #ffffff, #000000);
+    overflow: hidden;
+}
+
+.card{
+    margin-top: -150px;
+    position: relative;
+    height: 700px;
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 7px 5px -5px #4d4b4b;
+}
+
+.img-fluid{
+    width: 100%;
+}
+
+#search{
+    margin-top: 50px;
+    margin-left: 200px;
+}
