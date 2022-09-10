@@ -12,7 +12,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Jekyll v4.1.1" />
-    <title>Dashboard Food</title>
+    <title>Capstone Store Admin</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -29,7 +29,6 @@
       href="../../assets/lib/css/bootstrap/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../assets/css/foodList.css" />
 
     <style>
       .bd-placeholder-img {
@@ -47,13 +46,10 @@
         }
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="../../assets/css/dashboard.css" rel="stylesheet" />
-    <!-- <link href="../../assets/css/foodForm.css" rel="stylesheet"> -->
   </head>
 
   <body>
-    <div class="container-fluid mt-5">
+    <div class="container container-fluid mt-5">
       <div class="row">
         <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-md-4">
           <h2>Danh Sách Sản Phẩm</h2>
@@ -64,7 +60,7 @@
               <button
                 id="btnThem"
                 type="button"
-                class="btn btn-warning mb-3 text-white"
+                class="btn btn-info mb-3 text-white"
                 data-toggle="modal"
                 data-target="#exampleModal"
               >
@@ -90,7 +86,7 @@
           <div class="table-responsive productTable">
             <table class="table table-striped table-sm">
               <thead>
-                <tr class="bg-warning text-white">
+                <tr class="bg-info text-white">
                   <th>ID</th>
                   <th>Tên</th>
                   <th>Giá</th>
@@ -109,14 +105,6 @@
         </main>
       </div>
     </div>
-    <!-- <footer class="my-5 pt-5 text-muted text-center text-small fixed-bottom">
-    <p class="mb-1">&copy; 2017-2020 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer> -->
 
     <!-- Modal -->
     <div
@@ -269,19 +257,33 @@
             <button type="button" class="btn btn-warning" id="btnCapNhat">
               Cập Nhật
             </button>
-            <button type="button" class="btn btn-warning" id="btnThemMon">
+            <button
+              type="button"
+              class="btn btn-warning"
+              id="btnThemSP"
+              onclick="addProduct()"
+            >
               Thêm
             </button>
           </div>
         </div>
       </div>
     </div>
+
     <script src="../../assets/lib/js/Jquery/jquery-3.5.1.slim.min.js"></script>
     <script src="../../assets/lib/js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script type="module" src="../controllers/v2/main-v2.js"></script>
+    <!-- Axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-    <script src="../controllers/food.js"></script>
+    <script src="../services/services.js"></script>
+    <script src="../controllers/product.js"></script>
+    <script src="../controllers/main.js"></script>
   </body>
 </html>
