@@ -1,4 +1,6 @@
 let service = new Services();
+let validation = new Validation();
+let product = new Product();
 
 function getEle(id) {
   return document.getElementById(id);
@@ -56,6 +58,14 @@ function deleteProduct(id) {
 }
 
 // Thêm
+getEle("btnThem").addEventListener("click", function () {
+  // Sửa title
+  document.getElementsByClassName("modal-title")[0].innerHTML = "Thêm sản phẩm";
+  // Tạo nút Add
+  var btnAdd = `<button class = "btn btn-success" onclick="addProduct()">Add</button>`;
+  document.getElementsByClassName("modal-footer")[0].innerHTML = btnAdd;
+});
+
 function addProduct() {
   let tenSP = getEle("tenSP").value;
   let giaSP = getEle("giaSP").value;
@@ -65,6 +75,61 @@ function addProduct() {
   let hinhSP = getEle("hinhSP").value;
   let moTa = getEle("moTa").value;
   let loaiSP = getEle("loaiSP").value;
+
+  // isValid = true => form hợp lệ
+  var isValid = true;
+
+  // Kiểm tra rỗng
+
+  isValid &= validation.kiemTraRong(
+    tenSP,
+    "invalidTen",
+    "(*) Vui lòng nhập tên sản phẩm"
+  );
+
+  isValid &= validation.kiemTraRong(
+    giaSP,
+    "invalidGia",
+    "(*) Vui lòng nhập giá SP"
+  );
+
+  isValid &= validation.kiemTraRong(
+    manHinh,
+    "invalidManHinh",
+    "(*) Vui lòng nhập cấu hình"
+  );
+
+  isValid &= validation.kiemTraRong(
+    cameraSau,
+    "invalidCameraSau",
+    "(*) Vui lòng nhập camera sau"
+  );
+
+  isValid &= validation.kiemTraRong(
+    cameraTruoc,
+    "invalidCameraTruoc",
+    "(*) Vui lòng nhập camera trước"
+  );
+
+  isValid &= validation.kiemTraRong(
+    hinhSP,
+    "invalidHinhSP",
+    "(*) Vui lòng thêm hình ảnh"
+  );
+
+  isValid &= validation.kiemTraRong(
+    moTa,
+    "invalidMoTa",
+    "(*) Vui lòng nhập mô tả"
+  );
+
+  isValid &= validation.kiemTraRong(
+    loaiSP,
+    "invalidLoaiSP",
+    "(*) Vui lòng chọn loại SP"
+  );
+
+  if (!isValid) return null;
 
   // khai báo và gán dữ liệu đối tượng
   let product = new Product(
@@ -93,6 +158,13 @@ function addProduct() {
 
 // Sửa
 function editProduct(id) {
+  // Sửa title
+  document.getElementsByClassName("modal-title")[0].innerHTML =
+    "Cập nhật sản phẩm";
+  // Tạo nút Update
+  var btnUpdate = `<button class="btn btn-info" onclick="updateProduct(${id})")>Update</button>`;
+  document.getElementsByClassName("modal-footer")[0].innerHTML = btnUpdate;
+
   service
     .getProduct(id)
     .then(function (result) {
@@ -114,7 +186,6 @@ function editProduct(id) {
 
 // Update
 function updateProduct(id) {
-  let maSP = getEle("productID").value;
   let tenSP = getEle("tenSP").value;
   let giaSP = getEle("giaSP").value;
   let manHinh = getEle("manHinh").value;
@@ -126,7 +197,7 @@ function updateProduct(id) {
 
   // khai báo và gán dữ liệu đối tượng
   let product = new Product(
-    maSP,
+    id,
     tenSP,
     giaSP,
     manHinh,

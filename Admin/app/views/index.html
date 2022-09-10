@@ -123,6 +123,7 @@
               class="close"
               data-dismiss="modal"
               aria-label="Close"
+              display="block"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -137,9 +138,10 @@
                     type="text"
                     class="form-control"
                     id="productID"
-                    placeholder="Nhập ID"
+                    placeholder=""
                     value=""
                     required
+                    disabled
                   />
                   <div id="invalidID" class="invalid-feedback"></div>
                 </div>
@@ -153,7 +155,7 @@
                     placeholder="Nhập tên sản phẩm"
                     required
                   />
-                  <div id="invalidTen" class="invalid-form"></div>
+                  <div id="invalidTen" class="invalid-feedback"></div>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -225,7 +227,7 @@
                       id="moTa"
                       rows="3"
                     ></textarea>
-                    <div id="invalidMoTa" class="invalid-form"></div>
+                    <div id="invalidMoTa" class="invalid-feedback"></div>
                   </div>
                 </div>
 
@@ -240,32 +242,14 @@
                       value=""
                       required
                     />
+                    <div id="invalidLoaiSP" class="invalid-feedback"></div>
                   </div>
                 </div>
               </div>
             </form>
           </div>
 
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-warning" id="btnCapNhat">
-              Cập Nhật
-            </button>
-            <button
-              type="button"
-              class="btn btn-warning"
-              id="btnThemSP"
-              onclick="addProduct()"
-            >
-              Thêm
-            </button>
-          </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
@@ -282,6 +266,7 @@
       referrerpolicy="no-referrer"
     ></script>
 
+    <script src="../models/validation.js"></script>
     <script src="../services/services.js"></script>
     <script src="../controllers/product.js"></script>
     <script src="../controllers/main.js"></script>
