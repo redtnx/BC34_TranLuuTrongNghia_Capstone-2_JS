@@ -1,6 +1,7 @@
 let service = new Services();
 let validation = new Validation();
 let product = new Product();
+var listProduct = [];
 
 function getEle(id) {
   return document.getElementById(id);
@@ -11,6 +12,7 @@ function fetchData() {
     .getListProduct()
     .then(function (result) {
       renderHTML(result.data);
+      listProduct = result.data;
     })
     .catch(function (error) {
       console.log(error);
@@ -45,6 +47,16 @@ function renderHTML(data) {
   getEle("tbodyProduct").innerHTML = content;
 }
 
+// Select
+function selectedTypeProduct() {
+  const value = document.querySelector("#selLoai").value;
+  if (value === "All") {
+    renderHTML(listProduct);
+  } else {
+    renderHTML(listProduct.filter((item) => item.type === value));
+  }
+}
+
 // Xóa
 function deleteProduct(id) {
   service
@@ -61,6 +73,16 @@ function deleteProduct(id) {
 getEle("btnThem").addEventListener("click", function () {
   // Sửa title
   document.getElementsByClassName("modal-title")[0].innerHTML = "Thêm sản phẩm";
+
+  getEle("tenSP").value = "";
+  getEle("giaSP").value = "";
+  getEle("manHinh").value = "";
+  getEle("cameraSau").value = "";
+  getEle("cameraTruoc").value = "";
+  getEle("hinhSP").value = "";
+  getEle("moTa").value = "";
+  getEle("loaiSP").value = "";
+
   // Tạo nút Add
   var btnAdd = `<button class = "btn btn-success" onclick="addProduct()">Add</button>`;
   document.getElementsByClassName("modal-footer")[0].innerHTML = btnAdd;

@@ -82,11 +82,19 @@
             </div>
 
             <div class="modal-footer">
+              <div id="footer"></div>
               <div>
-                <button class="btn btn-info" style="width: 100px">
+                <button
+                  id="thanhToan"
+                  class="btn btn-info"
+                  style="width: 100px"
+                  onclick="payment()"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
                   <i class="fa fa-dollar-sign"></i>
                 </button>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger" onclick="clearCart()">
                   <i class="fa fa-trash-alt"></i>
                 </button>
               </div>
